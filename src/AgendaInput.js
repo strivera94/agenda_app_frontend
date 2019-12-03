@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 export class AgendaInput extends Component {
+
+    onChange = (event) => this.setState({[event.target.input]: event.target.value})
+
     render() {
         return (
             <div>
@@ -9,9 +12,10 @@ export class AgendaInput extends Component {
                         My Agendas:
                         <br/>
                         <input
+                            onChange={this.onChange}
                             style={{width: '50%', height: '20px'}}
                             type='text'
-                            name='name'
+                            name='input'
                         />
                     </label>
                     <input type='submit' value='Submit' />
