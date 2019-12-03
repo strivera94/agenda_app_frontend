@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import AgendaList from './AgendaList'
+import Header from './Header'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ class App extends Component {
+
+  state = {
+    agendas: []
+  }
+
+  componentDidMount(){
+    fetch("http://localhost:3000/agendas")
+    .then(r => r.json())
+    .then(data => this.setState({agendas: data}))
+  }
+
+  userInput = (e) => {
+    e.preventDefault()
+    this.setState({
+      agendas: [...this.state.agendas, {list: e.target.name.value}]
+    })
+  }
+
+  render() {
+    
+    return (
+      <div>
+        <Header />
+        <AgendaList agendaArr={this.state.agendas} />
+      </div>
+    );
+  }
 }
 
 export default App;
