@@ -12,7 +12,10 @@ import AgendaInput from './AgendaInput'
     componentDidMount(){
         fetch("http://localhost:3000/agendas")
         .then(r => r.json())
-        .then(data => this.setState({agendas: data}))
+        .then(data => 
+            console.log(data)
+            // this.setState({agendas: data})
+            )
     }
 
     userInput = (event) => {
@@ -24,8 +27,8 @@ import AgendaInput from './AgendaInput'
                 "accept": "application/json"
             },
             body: JSON.stringify({
-                list: event.target.input.value,
-                user_id: 1
+                list: event.target.input.value
+                // user_id: 1
             })
         })
         .then(r => r.json())
