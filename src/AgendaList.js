@@ -36,7 +36,6 @@ import AgendaInput from './AgendaInput'
         })
     }
 
-
     render() {
         const agendas = this.state.agendas.map(agenda => (
            <Agenda agenda={agenda} key={agenda.id} />
@@ -45,6 +44,7 @@ import AgendaInput from './AgendaInput'
         return (
             <div>
                 <AgendaInput userInput={this.userInput} />
+                <h3>My Agendas: </h3>
                 {agendas}
             </div>
         );

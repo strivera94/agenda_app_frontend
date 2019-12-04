@@ -9,7 +9,7 @@ export class AgendaInput extends Component {
             <div>
                 <form onSubmit={this.props.userInput}>
                     <label>
-                        My Agendas:
+                        New Agenda:
                         <br/>
                         <input
                             onChange={this.onChange}
