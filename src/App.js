@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route, Redirect} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import AgendaList from './AgendaList'
 import Header from './Header'
 import Login from './Login'
@@ -7,17 +7,15 @@ import Login from './Login'
  class App extends Component {
   state = {
     signedin: false,
-    username: {}
+    username: "",
+    user_id: null 
   }
 
   setUser = (userObj) => {
-    console.log(userObj)
     this.setState({
       signedin: true,
-      username: userObj
-    }, function(){
-      localStorage.setItem('signedIn', 'true')
-      localStorage.setItem('user', JSON.stringify(userObj))
+      username: userObj.username,
+      user_id: userObj.id
     })
   }
 
@@ -39,12 +37,11 @@ import Login from './Login'
   // }
 
   render() {
-    console.log(localStorage)
     return (
       <div>
         <Header />
         <h1>{this.state.signedin}</h1>
-        {this.state.signedin ? <AgendaList /> : <Login setUser={this.setUser} />}
+        {this.state.signedin ? <AgendaList userId={this.state.user_id} /> : <Login setUser={this.setUser} />}
       </div>
     );
   }

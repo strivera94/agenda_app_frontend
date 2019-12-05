@@ -6,16 +6,16 @@ import AgendaInput from './AgendaInput'
     
     state = {
         agendas: []
-
     }
 
     componentDidMount(){
-        fetch("http://localhost:3000/agendas")
+        fetch(`http://localhost:3000/users/${this.props.userId}`)
         .then(r => r.json())
-        .then(data => 
-            console.log(data)
-            // this.setState({agendas: data})
-            )
+        .then(userObj => {
+            this.setState({
+                agendas: userObj.agendas
+            })
+        })
     }
 
     userInput = (event) => {
